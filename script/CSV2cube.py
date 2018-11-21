@@ -17,9 +17,10 @@ if __name__ == '__main__':
 
     if not (os.path.isdir(scriptPath+workingPath)):
         os.mkdir(scriptPath+workingPath)
-    csv_obj = open(os.getcwd()+"\\"+databaseName+".csv", "r",-1,"utf-8") # TODO: make variable
+    csv_obj = open(os.getcwd()+"\\"+databaseName+".csv", "r",encoding="cp1252")
     for cube in csv_obj.readlines()[1:]:
-        cube = cube.split(',') # since , appears in text change to other separator
+        cube = cube.replace("&","\&").replace("°","$^\circ$") # escape character
+        cube = cube.split('\t') # tabulator is the separator
         with open(scriptPath+workingPath+"\\"+cube[6]+".tex","w",-1,"utf-8") as outputFile:
             # currently shapemod and stickermod are not used
             outputFile.write("\\cube%Shapemod:"+cube[8]+" Stickermod:"+cube[9]+

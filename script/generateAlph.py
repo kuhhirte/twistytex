@@ -2,10 +2,8 @@ import glob, os, sys
 
 def getTypes(file):
     lines = []
-    for line in file.read().split("{"): # map ?
-        for char in line: # filter ?
-            if char in ['}','\n']:
-                 line = line.replace(char,'')
+    iolines = file.read().split("\n{",1)[1] # remove }\cube% ... {
+    for line in (iolines.split("}\n{")): # map ? // split at every linebreak between parameters
         lines.append(line.split('%', 1)[-1]) # if theres a comment, use part after last % for sorting
     return lines
 
@@ -25,13 +23,13 @@ if __name__ == '__main__':
         texList = glob.glob("*.tex") # collect tex files in list
         texList.sort()
         sortList = []
-        sortBy = "Form" #TODO: change hardcoded to parameter
+        sortBy = "Shape" #TODO: change hardcoded to parameter
         for file in texList:
             file_obj  = open(os.getcwd()+"\\"+file, "r",-1,"utf-8")
             lines = getTypes(file_obj)
-            if(sortBy == "Form"):
-                if not lines[2] in sortList:
-                    sortList.append(lines[2])
+            if(sortBy == "Shape"):
+                if not lines[1] in sortList:
+                    sortList.append(lines[1])
         sortList.sort()
         # generate the tex for the given folder
         # 1. print variable values for LaTeX
@@ -46,5 +44,5 @@ if __name__ == '__main__':
             for file in texList:
                 file_obj  = open(os.getcwd()+"\\"+file, "r",-1,"utf-8")
                 lines = getTypes(file_obj)
-                if cubetype == lines[2]:
+                if cubetype == lines[1]:
                     outputFile.write("\input{script/"+outputPath+"/"+file+"}\n")

@@ -23,6 +23,10 @@ if __name__ == '__main__':
         cube = cube.split('\t') # tabulator is the separator
         with open(scriptPath+workingPath+"\\"+cube[6]+".tex","w",-1,"utf-8") as outputFile:
             # currently shapemod and stickermod are not used
-            outputFile.write("\\cube%Shapemod:"+cube[8]+" Stickermod:"+cube[9]+
-                             "{"+cube[1]+"}\n{"+cube[2]+"}\n{"+cube[3]+"}\n{"+
-                             cube[5]+"}\n{"+cube[6]+".jpg}\n{"+cube[7]+"}")
+            outputString = "\\cube%Shapemod:"+cube[8]+" Stickermod:"+cube[9]+"\n{"
+            if len(cube[4]) == 0:
+                outputString += cube[1]
+            else:
+                outputString += "\\href{"+cube[4].replace("_","\_")+"}{"+cube[1]+"}"
+            outputString += "}\n{"+cube[2]+"}\n{"+cube[3]+"}\n{"+cube[5]+"}\n{"+cube[6]+".jpg}\n{"+cube[7]+"}"
+            outputFile.write(outputString)

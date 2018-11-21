@@ -28,27 +28,26 @@
 
 \newcommand{\cube}[6]%
 {\begin{figure}[!htbp]%
-	\begin{minipage}[t]{0.64\textwidth}%
-		\begin{tabular}[t]{@{}ll@{}}%
-			\textbf{Name} & #1\\%
-			\ifthenelse{\equal{\sortby}{Shape}}{}{\textbf{Shape}&#2\\}%
-			\ifthenelse{\equal{\sortby}{Brand}}{}{\textbf{Brand}&#3\\}%
-			\ifthenelse{\equal{\sortby}{Mechanism}}{}{\textbf{Mechanism} & #4}%
-		\end{tabular}%
-	
-	\textbf{Comment}%
-	
-	#6%
-	\end{minipage}%
-	\hfill%
-	\begin{minipage}[t]{0.33\textwidth}%
-		\IfFileExists{script/TEMPpictures/#5}%
-		{\strut\vspace*{-\baselineskip}\newline\includegraphics[width=\textwidth]{script/TEMPpictures/#5}}%
-		{\noindent\fbox{\begin{minipage}[t][6\baselineskip][t]{\textwidth}\centering no image found\end{minipage}}}
-	\end{minipage}%
-\end{figure}%
+		\begin{minipage}[t]{0.64\textwidth}%
+			\begin{tabular}[t]{@{}ll@{}}%
+				\textbf{Name} & #1\\%
+				\ifthenelse{\equal{\sortby}{Shape}}{}{\textbf{Shape}&#2\\}%
+				\ifthenelse{\equal{\sortby}{Brand}}{}{\textbf{Brand}&#3\\}%
+				\ifthenelse{\equal{\sortby}{Mechanism}}{}{\textbf{Mechanism} & #4}%
+			\end{tabular}%
+		
+			\textbf{Comment}%
+		
+			#6%
+		\end{minipage}%
+		\hfill%
+		\begin{minipage}[t]{0.33\textwidth}%
+			\IfFileExists{script/TEMPpictures/#5}%
+			{\strut\vspace*{-\baselineskip}\newline\includegraphics[width=\textwidth]{script/TEMPpictures/#5}}%
+			{\noindent\fbox{\begin{minipage}[t][6\baselineskip][t]{\textwidth}\centering no image found\end{minipage}}}
+		\end{minipage}%
+	\end{figure}%
 }
-
 
 \begin{document}
 	

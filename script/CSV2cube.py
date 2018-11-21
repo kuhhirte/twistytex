@@ -21,6 +21,9 @@ if __name__ == '__main__':
     for cube in csv_obj.readlines()[1:]:
         cube = cube.replace("&","\&").replace("°","$^\circ$") # escape character
         cube = cube.split('\t') # tabulator is the separator
+        # if in CSV there is an empty line after the last element \n is in the empty one
+        # since this might causes formatting issues, just remove any instance of \n in the last argument, to be sure
+        cube[-1] = cube[-1].replace("\n","") 
         with open(scriptPath+workingPath+"\\"+cube[6]+".tex","w",-1,"utf-8") as outputFile:
             # currently shapemod and stickermod are not used
             outputString = "\\cube%Shapemod:"+cube[8]+" Stickermod:"+cube[9]+"\n{"

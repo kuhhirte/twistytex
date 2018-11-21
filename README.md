@@ -10,3 +10,5 @@ The generate.cmd does the following:
 - **Generating PDF (1st time)**		via pdflatex.exe main.tex
 - **Generating PDF (2nd time)**		to update the toc and links
 - **Deleting auxilliary files**		as a cleanup
+
+Some example cubes are already listed in the CSV file. Corresponding pictures are in the pictures folder.

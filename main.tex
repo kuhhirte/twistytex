@@ -1,0 +1,102 @@
+\documentclass[12pt]{article}
+
+\usepackage{fullpage} % less whitespace
+\usepackage[utf8]{inputenc} % write ümläüts
+\usepackage[T1]{fontenc} % output ümläuts
+\usepackage{lmodern} % used font
+\usepackage[british]{babel} % looks like british
+\usepackage{csquotes} % quotation symbols 
+\usepackage[babel=true]{microtype} % sexy micro typesetting
+\usepackage[backend=biber,style=numeric]{biblatex} % bibliography package
+\addbibresource{main.bib} % bibliogryphy style
+
+\usepackage{ifthen}
+\usepackage{tikz}
+
+\usepackage{caption} % customizing captions of floating environments
+\usepackage{gensymb} % general symbols (like degree)
+\usepackage{wasysym} % extra general symbols
+\usepackage{fontawesome}
+\usepackage{graphicx}
+
+\usepackage{hyperref} % create URLs and clickable refs
+\usepackage{titling} % custom titling
+
+\title{Twisty Puzzles}
+\author{kuhhirte}
+\date{\today}
+
+\newcommand{\cube}[6]%
+{\begin{figure}[!htbp]%
+	\begin{minipage}[t]{0.64\textwidth}%
+		\begin{tabular}[t]{@{}ll@{}}%
+			\textbf{Name} & #1\\%
+			\ifthenelse{\equal{\sortby}{Shape}}{}{\textbf{Shape}&#2\\}%
+			\ifthenelse{\equal{\sortby}{Brand}}{}{\textbf{Brand}&#3\\}%
+			\ifthenelse{\equal{\sortby}{Mechanism}}{}{\textbf{Mechanism} & #4}%
+		\end{tabular}%
+	
+	\textbf{Comment}%
+	
+	#6%
+	\end{minipage}%
+	\hfill%
+	\begin{minipage}[t]{0.33\textwidth}%
+		\IfFileExists{script/TEMPpictures/#5}%
+		{\strut\vspace*{-\baselineskip}\newline\includegraphics[width=\textwidth]{script/TEMPpictures/#5}}%
+		{\noindent\fbox{\begin{minipage}[t][6\baselineskip][t]{\textwidth}\centering no image found\end{minipage}}}
+	\end{minipage}%
+\end{figure}%
+}
+
+
+\begin{document}
+%\begin{titlepage}
+%	\renewcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+%	\center
+%	\thispagestyle{empty}       % Remove page numbering on this page
+%	
+%	{\Large\thetitle                 % Print the title data as defined above
+%		% Subtitle
+%		\\[20mm]                   % 2cm spacing
+%		\HRule \\ [5mm]      % Upper rule + 0.5cm spacing
+%		\LARGE \textbf{\textls[50]{\uppercase{Assignment 1}}}\\    % Title
+%		\HRule \\ [5mm]      % Lower rule + 0.5cm spacing
+%		\Large \today          % Todays date
+%	}
+%	\vfill
+%	{\Large\theauthor}                % Print the author data as defined above
+%	
+%	\vspace*{3ex}
+%	{
+%		\hypersetup{hidelinks=true}% the link in the logo is an easter egg
+%		\href{https://www.tuwien.ac.at/}{\includegraphics[width=25mm]{logo/TU_Signet.pdf}} %Include a department/university logo - this will require the graphicx package
+%	}\vspace*{3ex}
+%	
+%\end{titlepage}
+\begin{titlepage}
+	\input{script/texfiles/background.tex}
+	\thispagestyle{empty}      % Remove page numbering on this page
+	{\center
+		{
+			\LARGE\thetitle       % Print the title data as defined above
+			\\[5mm]               % 5mm spacing
+		 	\large\theauthor      % Print the author data as defined above
+		 	\\[5mm]               % 5mm spacing
+		 	\large\today          % Todays date
+		 	\\[30mm]              % 3cm spacing
+		}
+	}
+	
+	\tableofcontents
+	
+	\section*{Preface}
+	
+	This document was created using the structure and scripts from \href{https://github.com/kuhhirte/twistytex}{kuhhirte/twistytex on GitHub}.
+\end{titlepage}
+
+\input{script/cubes.tex}
+
+\nocite{*}
+\printbibliography[heading=bibintoc]
+\end{document}

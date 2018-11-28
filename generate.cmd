@@ -2,7 +2,7 @@
 ECHO Converting CSV to TEX . . .
 python script\CSV2cube.py cubes
 ECHO Generating collective TEX for cubes . . .
-python script\generateAlph.py cubes
+python script\generateAlph.py cubes Shape
 ECHO Resizing images . . .
 IF EXIST "%programfiles%\IrfanView\i_view64.exe" GOTO iviewtrue
 ECHO WARNING: IrfanView (64 bit) not found!

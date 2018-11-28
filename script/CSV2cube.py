@@ -2,7 +2,7 @@ import glob, os, sys
 
 if __name__ == '__main__':
     startPath = os.getcwd()
-    scriptPath = os.getcwd()+"\\script\\"
+    scriptPath = os.path.join(os.getcwd(),'script')
 
     if len(sys.argv[1:]) == 0:
         databaseName = input("Please enter the databasename (eg cubes): ")
@@ -13,18 +13,19 @@ if __name__ == '__main__':
     else:
         tempPrefix = sys.argv[2]
 
-    workingPath = tempPrefix+databaseName
+    workingFolder = tempPrefix+databaseName
+    workingPath = os.path.join(scriptPath,workingFolder)
 
-    if not (os.path.isdir(scriptPath+workingPath)):
-        os.mkdir(scriptPath+workingPath)
-    csv_obj = open(os.getcwd()+"\\"+databaseName+".csv", "r",encoding="cp1252")
+    if not (os.path.isdir(workingPath)):
+        os.mkdir(workingPath)
+    csv_obj = open(os.path.join(os.getcwd(),databaseName+'.csv'), "r",encoding="cp1252")
     for cube in csv_obj.readlines()[1:]:
         cube = cube.replace("&","\&").replace("°","$^\circ$") # escape character
         cube = cube.split('\t') # tabulator is the separator
         # if in CSV there is an empty line after the last element \n is in the empty one
         # since this might causes formatting issues, just remove any instance of \n in the last argument, to be sure
         cube[-1] = cube[-1].replace("\n","") 
-        with open(scriptPath+workingPath+"\\"+cube[6]+".tex","w",-1,"utf-8") as outputFile:
+        with open(os.path.join(workingPath,cube[6]+'.tex'),"w",-1,"utf-8") as outputFile:
             # currently shapemod and stickermod are not used
             outputString = "\\cube%Shapemod:"+cube[8]+" Stickermod:"+cube[9]+"\n{"
             if len(cube[4]) == 0:

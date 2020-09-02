@@ -47,8 +47,14 @@ if __name__ == '__main__':
         outputFile.write("\\newcommand{\sortby}{"+sortBy+"}\n\n")
         for cubetype in sortList:
             outputFile.write("\n\\newpage\n\section{"+cubetype+"}\n\n")
+            i=0 # ensure 4 entries per page and correct spacing
             for file in texList:
                 file_obj  = open(os.path.join(os.getcwd(),file), "r",-1,"utf-8")
                 lines = getTypes(file_obj)
                 if cubetype == lines[1]:
-                    outputFile.write("\input{script/"+outputPath+"/"+file+"}\n")
+                    if i==3:
+                        i=0
+                        outputFile.write("\input{script/"+outputPath+"/"+file+"}\\clearpage\n")
+                    else:
+                        i+=1
+                        outputFile.write("\input{script/"+outputPath+"/"+file+"}\n")

@@ -1,6 +1,6 @@
 @ECHO off
 ECHO Converting CSV to TEX . . .
-python script\CSV2cube.py cubes
+python script\CSV2cube.py cubes "TEMP" True False False
 ECHO Generating collective TEX for cubes . . .
 python script\generateAlph.py cubes Shape
 ECHO Resizing images . . .
